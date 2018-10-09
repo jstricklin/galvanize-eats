@@ -1,8 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+main {
+    height: 100vh;
+}
+html {
     margin: 0;
     padding: 0;
+}
+body {
+    /* height: 100vh; */
 }
 header {
     margin: 0;
@@ -16,6 +22,7 @@ header {
     border-top-right-radius: 10px;
 }
 .link {
+    background: white;
     border: solid 1px gray;
     border-radius: 10px;
 }
