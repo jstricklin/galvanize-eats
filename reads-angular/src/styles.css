@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-main {
-    height: 100vh;
-}
 html {
     margin: 0;
     padding: 0;
@@ -13,6 +10,9 @@ body {
 header {
     margin: 0;
     padding: 0;
+}
+.main-content {
+    min-height: 100vh;
 }
 .link h5 {
     padding-top: 10px;
