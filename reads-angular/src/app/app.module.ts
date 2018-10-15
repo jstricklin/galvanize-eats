@@ -6,18 +6,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookListComponent } from './book-list/book-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
-import { BookComponent } from './book-list/book/book.component';
+import { BookComponent as Book } from './book-list/book/book.component';
 import { AuthorListComponent } from './author-list/author-list.component';
-import { AuthorComponent } from './author-list/author/author.component';
+import { AuthorComponent as Author } from './author-list/author/author.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookListComponent,
     DashboardComponent,
-    BookComponent,
+    Book,
     AuthorListComponent,
-    AuthorComponent
+    Author
   ],
   imports: [
     BrowserModule,

@@ -4,15 +4,26 @@ port = process.env.PORT || 3000;
 morgan = require('morgan');
 Papa = require('papaparse');
 cors = require('cors');
-fs = require('fs');
-data = JSON.parse(fs.readFileSync('../galvanize_reads_sample_data-json.js'));
-
+routes = require('./routes');
 app.use(cors());
 app.use(morgan('combined'));
 
-app.get("/", ( req, res, next )=>{
-    res.json(data);
+routes = require('./routes.js');
+app.use('/', routes);
+
+app.use((req, res, next)=>{
+    const err = new Error("Not Found");
+    err.status = 404;
+    next(err);
 })
+
+app.use((err, req, res)=>{
+    res.status(err.status || 500)
+        .json({
+            message: err.message,
+        })
+})
+
 
 app.listen(port, ()=>{ console.log(`Literary party on port: ${port}`) });
 
