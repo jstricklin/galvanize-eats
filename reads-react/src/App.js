@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar'
 import Authors from './components/Authors'
 import Books from './components/Books'
+import AuthorAbout from './components/AuthorAbout'
 import {Link, Router} from '@reach/router'
 
 const baseURL = 'http://localhost:3000'
@@ -33,6 +34,7 @@ class App extends Component {
                     <Router>
                         <Home path="/" />
                         <Authors getAuthors={this.getAuthors} path="/authors" />
+                        <AuthorAbout path="/authors/:name" />
                         <Books getBooks={this.getBooks} path="/books" />
                     </Router>
 
@@ -42,12 +44,12 @@ class App extends Component {
             </div>
             );
 }
-}
+        }
 
 const Home = () => {
     return (
         <div>Welcome!</div>
-    )
+        )
 }
 
 export default App;

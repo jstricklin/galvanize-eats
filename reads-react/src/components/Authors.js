@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from '@reach/router'
 
 class Authors extends Component {
     constructor(props) {
@@ -38,19 +39,20 @@ class AuthorCard extends Component {
         }
     }
     render() {
+        let authorURL = `${this.props.author.first}${this.props.author.last}`
         return (
             <div>
-            <div className="card" onClick={()=>this.setState({hide: !this.state.hide})}>
+                <Link className="card" to={authorURL} >
                 <div className="card-title">
                     <h5>{this.props.author.first} {this.props.author.last}</h5>
-                </div>
+            </div>
                 <div className="card-image">
                     <img src={this.props.author.portraitURL} alt="author pic" />
                 </div>
                 {this.state.hide ? null : <div className="card-body">
                     <p>{this.props.author.bio}</p>
                 </div> }
-            </div>
+            </Link>
             </div>
             )
     }
