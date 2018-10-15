@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { AuthorComponent as Author } from './author/author.component';
 import { LibraryService } from '../library.service';
 
@@ -6,17 +7,20 @@ import { LibraryService } from '../library.service';
     selector: 'app-author-list',
     templateUrl: './author-list.component.html',
     styleUrls: ['./author-list.component.css'],
-    // directives: [Author]
 })
+
+@NgModule({
+    declarations: [Author],
+})
+
 export class AuthorListComponent implements OnInit {
 
-    authors;
+    authorsData;
     books;
-    author: Author[];
 
     getAuthors(): any {
-        this.libraryService.getAuthors()
-            .then(res => this.authors = res);
+        return this.libraryService.getAuthors()
+            .then(res => this.authorsData = res);
     }
 
     constructor(private libraryService: LibraryService) { }
