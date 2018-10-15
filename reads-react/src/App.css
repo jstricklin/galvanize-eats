@@ -16,6 +16,13 @@ main {
     min-height: 100vh;
 }
 .card {
+    padding: 1rem;
     width: 250px;
     margin: 1rem;
 }
+div.card-title {
+}
+img { 
+    max-height: 150px;
+}
+
