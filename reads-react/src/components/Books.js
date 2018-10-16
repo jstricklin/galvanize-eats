@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BookCard from './BookCard'
 
 class Books extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Books extends Component {
             )
     }
     renderBooks() {
-        return this.state.bookData.map(book => <React.Fragment>{this.bookCard(book)}</React.Fragment>)
+        return this.state.bookData.map(book => <BookCard book={book}> </BookCard>)
     }
     componentDidMount() {
         this.props.getBooks()
@@ -27,10 +28,10 @@ class Books extends Component {
     render() {
         return (
             <div>
-                <h1> BOOKS </h1>
-                <div className="bg-warning d-flex flex-wrap justify-content-around py-3">
+                <div className="bg-secondary py-3">
+                    <h1> BOOKS </h1>
                     <div className="container d-flex flex-wrap justify-content-between">
-                            {this.renderBooks()}
+                        {this.renderBooks()}
                     </div>
                 </div>
 
