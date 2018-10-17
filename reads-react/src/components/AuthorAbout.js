@@ -16,7 +16,7 @@ class AuthorAbout extends Component {
     render(){
         return (
             <div>
-                <Link to="../"><button className="btn"> Go Back </button></Link>
+                <Link to=".."><button className="btn"> Go Back </button></Link>
                 {this.state.author ? <AuthorCard author={this.state.author} /> : null}
             </div>
             )

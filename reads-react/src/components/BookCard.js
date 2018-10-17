@@ -18,7 +18,7 @@ class BookCard extends Component {
     }
     populateAuthors = () => this.state.authors.map(author => {
         let authorURL = `../../authors/${author.first} ${author.last}`
-        return <Link to={authorURL}>{author.first} {author.last}</Link>
+        return <Link className="text-light mx-3" to={authorURL}>{author.first} {author.last}</Link>
         })
     componentDidMount(){
         this.setState({ hide: this.props.hide })

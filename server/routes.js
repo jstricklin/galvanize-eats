@@ -14,7 +14,14 @@ router.get('/authors/:name', (req, res, next)=>{
     let nameArr = req.params.name.split(" ");
     let capNameArr = [];
     nameArr.map(name => capNameArr.push(name.charAt(0).toUpperCase() + name.slice(1)))
-    if (nameArr.length > 1){
+    if (nameArr.length == 3){
+        let nameA = `${capNameArr[0]} ${capNameArr[1]}`;
+        let nameB = capNameArr[2];
+        queries.findAuthor(nameA, nameB)
+            .then(author => {
+                res.json({author: author});
+            })
+    } else if (nameArr.length == 2){
         let nameA = capNameArr[0];
         let nameB = capNameArr[1];
         queries.findAuthor(nameA, nameB)
