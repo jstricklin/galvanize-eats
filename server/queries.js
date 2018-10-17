@@ -34,6 +34,18 @@ module.exports = {
                     return testExp.test(book.title)
                 })
             })
+    },
+    getBookAuthors(title){
+        // let bookID = db('books')
+        //     .where('title', title)
+        //     .select('id')
+        // let authorIDs = db('authors_books')
+        //     .where('book_id', bookID)
+        //     .select('author_id')
+        // return db('authors')
+        //     .where('id', authorIDs)
+        return bookID = db('books')
+            .where('title', title)
+            .select('id')
     }
-
 }

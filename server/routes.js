@@ -38,5 +38,9 @@ router.get('/books/:title',(req, res, next)=>{
     queries.findBook(req.params.title)
         .then(book => res.json({result: book}))
 })
+router.get('/bookauthors/:title',(req, res, next)=>{
+    queries.getBookAuthors(req.params.title)
+        .then(book => res.json({result: book}))
+})
 
 module.exports = router;

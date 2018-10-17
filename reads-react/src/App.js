@@ -28,29 +28,35 @@ class App extends Component {
     getBooks() {
         return fetch(`${baseURL}/books`)
     }
+    getBook(title) {
+        return fetch(`${baseURL}/books/${title}`)
+    }
 
     render() {
         return (
             <div className="App">
                 <main className="container-flex bg-secondary d-flex flex-column justify-content-between">
-
-                    <navbar className="d-flex align-items-center navbar text-light bg-primary d-flex justify-content-between px-5"> <h1> Galvanize Reads </h1> <NavBar links={links} /> </navbar>
+                    <div className="navbar text-light bg-primary px-5"> <div className="col-sm-10 d-flex space-between"> <h1> Galvanize Reads </h1> <NavBar links={links} /> </div> </div>
 
                     <Router>
                         <Home path="/" />
                         <Authors getAuthors={this.getAuthors} path="/authors" />
                         <AuthorAbout getAuthor={this.getAuthor} path="/authors/:name" />
                         <Books getBooks={this.getBooks} path="/books" />
-                        <BookAbout path="/books/:title" />
+                        <BookAbout getBook={this.getBook} path="/books/:title" />
                     </Router>
 
-                    <footer className="bg-primary text-light"> test footer </footer>
+                    <footer className="bg-primary text-light text-left">
+                        <div className="col-sm-10">
+                            Galvanize g95 2018
+                        </div>
+                    </footer>
                 </main>
 
             </div>
             );
 }
-        }
+}
 
 const Home = () => {
     return (

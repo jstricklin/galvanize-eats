@@ -10,7 +10,10 @@ class Authors extends Component {
         }
     }
     renderAuthors() {
-        return this.state.authorData.map(author => <React.Fragment><AuthorCard author={author} /></React.Fragment>)
+        return this.state.authorData.map(author =>{
+            let authorURL = `${author.first} ${author.last}`
+            return <Link to={authorURL}><AuthorCard author={author} /></Link>
+            })
     }
     componentDidMount() {
         this.props.getAuthors()

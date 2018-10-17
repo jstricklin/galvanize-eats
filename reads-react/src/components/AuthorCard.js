@@ -10,14 +10,14 @@ class AuthorCard extends Component {
         }
     }
     render() {
-        let authorURL = `${this.props.author.first} ${this.props.author.last}`
+        // let authorURL = `${this.props.author.first} ${this.props.author.last}`
         return (
             <div>
-                <Link className="card bg-primary" to={authorURL} >
+                <div className="card bg-primary">
                     <div className="card-title text-light">
                         <h5>{this.props.author.first} {this.props.author.last}</h5>
                     </div>
-                    <div className="d-flex author-container align-items-center bg-light text-dark p-3">
+                    <div className="d-flex author-container align-items-center bg-secondary text-light p-3">
                         <div className="card-image">
                             <img src={this.props.author.portraitURL} alt="author pic" />
                         </div>
@@ -28,7 +28,7 @@ class AuthorCard extends Component {
                     {this.state.hide ? null : <div className="card-body">
                         <p>{this.props.author.bio}</p>
                     </div> }
-                </Link>
+                </div>
             </div>
             )
 }

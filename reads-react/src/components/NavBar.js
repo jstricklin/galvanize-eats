@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from '@reach/router'
 
 const NavBar = (props) => {
-    console.log(props)
     return (
         <nav className="d-flex">
             {navItems(props.links)}

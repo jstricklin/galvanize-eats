@@ -11,8 +11,6 @@ class AuthorAbout extends Component {
         this.props.getAuthor(this.props.name)
             .then(res => res.json())
             .then(json => this.setState({author: json.name[0]}))
-
-
     }
     render(){
         return (
