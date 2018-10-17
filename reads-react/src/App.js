@@ -36,8 +36,9 @@ class App extends Component {
         return (
             <div className="App">
                 <main className="container-flex bg-secondary d-flex flex-column justify-content-between">
-                    <div className="navbar text-light bg-primary px-5"> <div className="col-sm-10 d-flex space-between"> <h1> Galvanize Reads </h1> <NavBar links={links} /> </div> </div>
-
+                    <header className="text-light bg-primary"> <div className="col-sm-10 mx-auto d-flex justify-content-between"> <h1> Galvanize Reads </h1> <div className="my-auto"><input type="text" /><button className="btn ml-3">search</button></div></div> </header>
+                    <section className="col-sm-8 mx-auto">
+                    <NavBar links={links} />
                     <Router>
                         <Home path="/" />
                         <Authors getAuthors={this.getAuthors} path="/authors" />
@@ -45,9 +46,10 @@ class App extends Component {
                         <Books getBooks={this.getBooks} path="/books" />
                         <BookAbout getBook={this.getBook} path="/books/:title" />
                     </Router>
+                </section>
 
                     <footer className="bg-primary text-light text-left">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10 mx-auto">
                             Galvanize g95 2018
                         </div>
                     </footer>
