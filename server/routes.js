@@ -19,13 +19,13 @@ router.get('/authors/:name', (req, res, next)=>{
         let nameB = capNameArr[1];
         queries.findAuthor(nameA, nameB)
             .then(author => {
-                res.json({name: author});
+                res.json({author: author});
             })
     } else {
         let name = capNameArr[0];
         queries.findAuthor(name)
             .then(author => {
-                res.json({name: author});
+                res.json({author: author});
             })
     }
 })

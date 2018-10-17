@@ -6,7 +6,7 @@ class BookCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            hide: true,
+            hide: false,
             authors: [],
         }
     }
@@ -15,11 +15,13 @@ class BookCard extends Component {
         fetch(`${baseURL}/${this.props.book.title}`)
             .then(res => res.json())
             .then(json => this.setState({ authors: json.result }))
-            .then(json => console.log(this.state.authors))
     }
-    populateAuthors = () => this.state.authors.map(author => <p>{author.first} {author.last}</p>)
+    populateAuthors = () => this.state.authors.map(author => {
+        let authorURL = `../../authors/${author.first} ${author.last}`
+        return <Link to={authorURL}>{author.first} {author.last}</Link>
+        })
     componentDidMount(){
-        console.log(this.props.book)
+        this.setState({ hide: this.props.hide })
         this.getAuthors()
     }
     render() {
@@ -37,10 +39,12 @@ class BookCard extends Component {
                             <p>{this.props.book.description}</p>
                         </div>
                     </div>
-                    <section className="card-body bg-secondary mt-3 text-light">
+                    {this.state.hide ? null :
+                            <section className="card-body bg-secondary mt-3 text-light">
                         <h5>Authors</h5>
                         { this.state.authors ? this.populateAuthors() : null }
                     </section>
+                    }
                 </div>
             </div>
             )

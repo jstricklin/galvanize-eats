@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BookCard from './BookCard'
+import { Link } from '@reach/router'
 
 class BookAbout extends Component {
     constructor(props){
@@ -16,6 +17,7 @@ class BookAbout extends Component {
     render(){
         return (
             <div>
+                <Link to="../"><button className="btn"> Go Back </button></Link>
                 {this.state.book ? <BookCard title={this.props.title} book={this.state.book} /> : null}
             </div>
             )
