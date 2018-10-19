@@ -28,6 +28,9 @@ main {
 .card:hover {
     text-decoration: none;
 }
+.card-body {
+    border-radius: 5px;
+}
 .card-title {
     margin-left: 5em;
     margin-right: 5em;

@@ -47,7 +47,20 @@ router.get('/books/:title',(req, res, next)=>{
 })
 router.get('/bookauthors/:title',(req, res, next)=>{
     queries.getBookAuthors(req.params.title)
-        .then(book => res.json({result: book}))
+        .then(author => res.json({result: author}))
+})
+router.get('/authorbooks/:name', (req, res, next) => {
+    let nameArr = req.params.name.split(' ')
+    if (nameArr.length === 3){
+        let nameA = `${nameArr[0]} ${nameArr[1]}`
+        queries.getAuthorBooks(nameA, nameArr[2])
+            .then(books => res.json({result: books[0]}))
+    } else if (nameArr.length == 2) {
+        queries.getAuthorBooks(nameArr[0], nameArr[1])
+            .then(books => res.json({result:books[0]}))
+    }
+    // queries.getAuthorBooks(req.params.name)
+    //     .then(book => res.json({result: book}))
 })
 
 module.exports = router;

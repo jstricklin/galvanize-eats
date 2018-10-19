@@ -39,7 +39,7 @@ class BookCard extends Component {
                             <p>{this.props.book.description}</p>
                         </div>
                     </div>
-                    {this.state.hide ? null :
+                    {this.props.hide ? null :
                             <section className="card-body bg-secondary mt-3 text-light">
                         <h5>Authors</h5>
                         { this.state.authors ? this.populateAuthors() : null }

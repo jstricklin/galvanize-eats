@@ -43,5 +43,17 @@ module.exports = {
             .where('book_id', bookID)
             .select('author_id')
         return authorIDs.map(authorID => db('authors').where('id', authorID.author_id).select().then(res => res[0]))
+    },
+    getAuthorBooks(...name){
+        let authorID = db('authors')
+            .where('first', name[0])
+            .orWhere('last', name[0])
+            .andWhere('first', name[1])
+            .orWhere('last', name[1])
+            .select('id')
+        let bookIDs = db('authors_books')
+            .where('author_id', authorID)
+            .select('book_id')
+        return bookIDs.map(bookID => db('books').where('id', bookID.book_id).select().then(res => res))
     }
 }
