@@ -10,7 +10,7 @@ const NavBar = (props) => {
 }
 
 const navItems = (links) => {
-    return links.map(link => <button type="button" className="btn m-3 btn-dark"><Link to={link.toLowerCase()} className="px-1 text-light">{link}</Link></button>)
+    return links.map(link => <button type="button" className="btn m-3 btn-secondary"><Link to={link.toLowerCase()} className="px-1 text-light">{link}</Link></button>)
 }
 
 export default NavBar;

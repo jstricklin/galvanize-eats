@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  padding-top:6em;
+  min-height: 100vh;
 }
 
 .App-link {
@@ -40,6 +42,15 @@ main {
 nav a {
     font-size: 10pt;
 }
+.logo img {
+    border: none;
+    height: 75px;
+}
+.logo h1 {
+    border-left: 1px solid;
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
 img { 
     max-height: 150px;
     /* border-radius: 100%; */
@@ -52,4 +63,16 @@ img {
 }
 .author-container {
     border-radius: 4px;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:9999;
+    height: 6em;
 }
