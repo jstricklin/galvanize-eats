@@ -1,42 +1,68 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './assets/g-logo.png';
 import './App.css';
 import NavBar from './components/NavBar'
 import Authors from './components/Authors'
 import Books from './components/Books'
-import {Link, Router} from '@reach/router'
+import AuthorAbout from './components/AuthorAbout'
+import {Link, Router, navigate} from '@reach/router'
+import BookAbout from './components/BookAbout'
+import Search from './components/Search'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const baseURL = 'http://localhost:3000'
 const links = ["Authors", "Books"]
+
 class App extends Component {
     constructor(){
         super()
         this.state = {
             authors: [],
             books: [],
+            search: '',
+            searchResults: [],
         }
+        this.startSearch = this.startSearch.bind(this)
     }
     getAuthors() {
         return fetch(`${baseURL}/authors`)
     }
+    getAuthor(name){
+        return fetch(`${baseURL}/authors/${name}`)
+    }
     getBooks() {
         return fetch(`${baseURL}/books`)
     }
-
+    getBook(title) {
+        return fetch(`${baseURL}/books/${title}`)
+    }
+    startSearch(e){
+        e.preventDefault()
+        e.target.reset()
+        navigate(`/search/${this.state.search}`)
+    }
     render() {
         return (
             <div className="App">
-                <main className="container-flex bg-info d-flex flex-column justify-content-between">
+                <main className="container-flex bg-secondary d-flex flex-column">
+                    <header className="main-header d-flex align-items-center text-light bg-primary"> <div className="col-sm-10 mx-auto d-flex justify-content-between align-items-center"><div className="logo d-flex align-items-center"> <i class="fa fa-search" aria-hidden="true"></i> <img src={logo} /> <Link className="text-light" to="/"><h1> Reads </h1></Link></div> <NavBar links={links} /><div className="my-auto d-flex"><form onSubmit={this.startSearch}><input onChange={(e)=>this.setState({search: e.target.value})} type="text" /><button className="btn ml-3"><FontAwesomeIcon icon="search" /></button></form></div></div> </header>
 
-                    <header className="d-flex align-items-center text-light bg-dark d-flex justify-content-between px-5"> <h1> Galvanize Reads </h1> <NavBar links={links} /> </header>
-
+                    <section className="col-sm-8 mx-auto">
                     <Router>
                         <Home path="/" />
+                        <Search termString={this.state.search} path="/search/:terms" />
                         <Authors getAuthors={this.getAuthors} path="/authors" />
+                        <AuthorAbout getAuthor={this.getAuthor} path="/authors/:name" />
                         <Books getBooks={this.getBooks} path="/books" />
+                        <BookAbout getBook={this.getBook} path="/books/:title" />
                     </Router>
+                </section>
 
-                    <footer className="bg-dark text-light"> test footer </footer>
+                    <footer className="bg-primary text-light text-left">
+                        <div className="col-sm-10 mx-auto">
+                            Galvanize g95 2018
+                        </div>
+                    </footer>
                 </main>
 
             </div>
@@ -47,7 +73,7 @@ class App extends Component {
 const Home = () => {
     return (
         <div>Welcome!</div>
-    )
+        )
 }
 
 export default App;

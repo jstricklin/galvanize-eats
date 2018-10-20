@@ -14,18 +14,25 @@ router.get('/authors/:name', (req, res, next)=>{
     let nameArr = req.params.name.split(" ");
     let capNameArr = [];
     nameArr.map(name => capNameArr.push(name.charAt(0).toUpperCase() + name.slice(1)))
-    if (nameArr.length > 1){
+    if (nameArr.length == 3){
+        let nameA = `${capNameArr[0]} ${capNameArr[1]}`;
+        let nameB = capNameArr[2];
+        queries.findAuthor(nameA, nameB)
+            .then(author => {
+                res.json({author: author});
+            })
+    } else if (nameArr.length == 2){
         let nameA = capNameArr[0];
         let nameB = capNameArr[1];
         queries.findAuthor(nameA, nameB)
             .then(author => {
-                res.json({name: author});
+                res.json({author: author});
             })
     } else {
         let name = capNameArr[0];
         queries.findAuthor(name)
             .then(author => {
-                res.json({name: author});
+                res.json({author: author});
             })
     }
 })
@@ -37,6 +44,23 @@ router.get('/books', (req, res, next)=>{
 router.get('/books/:title',(req, res, next)=>{
     queries.findBook(req.params.title)
         .then(book => res.json({result: book}))
+})
+router.get('/bookauthors/:title',(req, res, next)=>{
+    queries.getBookAuthors(req.params.title)
+        .then(author => res.json({result: author}))
+})
+router.get('/authorbooks/:name', (req, res, next) => {
+    let nameArr = req.params.name.split(' ')
+    if (nameArr.length === 3){
+        let nameA = `${nameArr[0]} ${nameArr[1]}`
+        queries.getAuthorBooks(nameA, nameArr[2])
+            .then(books => res.json({result: books[0]}))
+    } else if (nameArr.length == 2) {
+        queries.getAuthorBooks(nameArr[0], nameArr[1])
+            .then(books => res.json({result:books[0]}))
+    }
+    // queries.getAuthorBooks(req.params.name)
+    //     .then(book => res.json({result: book}))
 })
 
 module.exports = router;

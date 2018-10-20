@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { $ } from 'jquery';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+library.add(faSearch)
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
