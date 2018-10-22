@@ -8,6 +8,7 @@ class BookCard extends Component {
         this.state = {
             hide: false,
             authors: [],
+            title: []
         }
     }
     getAuthors = () => {
@@ -23,24 +24,25 @@ class BookCard extends Component {
     componentDidMount(){
         this.setState({ hide: this.props.hide })
         this.getAuthors()
+        this.setState({title: this.props.book.title.split(':')})
     }
     render() {
         return (
             <div>
                 <div className="card bg-primary">
                     <div className="card-title text-light">
-                        <h5>{this.props.book.title}</h5>
+                        <h5>{this.state.title[0]}</h5>
+                        <p>{this.state.title[1]} </p>
                     </div>
-                    <div className="d-flex author-container align-items-center bg-secondary text-light p-3">
+                    <div className="d-flex card-container justify-content-center align-items-center bg-secondary text-light p-3">
                         <div className="card-image">
-                            <img src={this.props.book.coverURL} alt="author pic" />
+                            <img src={this.props.book.coverURL} alt="book pic" />
                         </div>
-                        <div className="author-bio mx-5">
+                        {this.state.hide ? null : <div className="card-info mx-5">
                             <p>{this.props.book.description}</p>
-                        </div>
+                        </div>}
                     </div>
-                    {this.props.hide ? null :
-                            <section className="card-body bg-secondary mt-3 text-light">
+                    {this.props.hide ? null : <section className="card-body bg-secondary mt-3 text-light">
                         <h5>Authors</h5>
                         { this.state.authors ? this.populateAuthors() : null }
                     </section>

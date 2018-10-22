@@ -4,12 +4,14 @@ port = process.env.PORT || 3000;
 morgan = require('morgan');
 Papa = require('papaparse');
 cors = require('cors');
+bodyParser = require('body-parser');
 routes = require('./routes');
 app.use(cors());
 app.use(morgan('combined'));
 
 routes = require('./routes.js');
 app.use('/', routes);
+app.use(bodyParser.json())
 
 app.use((req, res, next)=>{
     const err = new Error("Not Found");

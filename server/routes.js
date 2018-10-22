@@ -59,8 +59,33 @@ router.get('/authorbooks/:name', (req, res, next) => {
         queries.getAuthorBooks(nameArr[0], nameArr[1])
             .then(books => res.json({result:books[0]}))
     }
-    // queries.getAuthorBooks(req.params.name)
-    //     .then(book => res.json({result: book}))
+})
+app.get('/search/:terms', (req, res, next) => {
+    let authRes = []
+    let bookRes = []
+    let searchArr = req.params.terms.split(' ')
+    queries.listAuthors()
+        .then(authors => {
+            searchArr.map(term => {
+                let test = new RegExp(term, 'i')
+                authors.map(author => {
+                    if (test.test(author.first) || test.test(author.last)){
+                        if (!authRes.includes(author)) {
+                            authRes.push(author)
+                        }
+
+                    }
+
+                })
+            })
+        })
+        queries.findBook(req.params.terms)
+            .then(res => {bookRes = res; return bookRes})
+        .then(books => res.json({
+            authors: authRes,
+            books: books,
+        }))
+
 })
 
 module.exports = router;

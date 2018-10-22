@@ -17,7 +17,7 @@ class BookAbout extends Component {
     render(){
         return (
             <div>
-                <Link to=".."><button className="btn"> Go Back </button></Link>
+                <Link to=".."><button className="btn btn-dark mt-4"> Go Back </button></Link>
                 {this.state.book ? <BookCard title={this.props.title} book={this.state.book} /> : null}
             </div>
             )

@@ -10,6 +10,15 @@ module.exports = {
         return db('books')
             .then(books => books)
     },
+    searchAuthors(...names) {
+        let nameArr = []
+        let auth = names.map(name => {
+                db('authors')
+                .where('first', name)
+                .orWhere('last', name)
+                .select()
+       })
+    },
     findAuthor(...name){
         if (name.length > 1) {
             return db('authors')

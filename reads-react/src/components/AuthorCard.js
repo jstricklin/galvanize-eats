@@ -30,13 +30,13 @@ class AuthorCard extends Component {
                     <div className="card-title text-light">
                         <h5>{this.props.author.first} {this.props.author.last}</h5>
                     </div>
-                    <div className="d-flex author-container align-items-center bg-secondary text-light p-3">
+                    <div className="d-flex card-container justify-content-center align-items-center bg-secondary text-light p-3">
                         <div className="card-image">
                             <img src={this.props.author.portraitURL} alt="author pic" />
                         </div>
-                        <div className="author-bio mx-5">
+                     {this.state.hide ? null :    <div className="card-info mx-5">
                             <p>{this.props.author.bio}</p>
-                        </div>
+                        </div>}
                     </div>
                     {this.state.hide ? null : <div className="card-body bg-secondary text-light mt-3">
                         <h5>Books</h5>

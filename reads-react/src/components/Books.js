@@ -35,7 +35,7 @@ render() {
         <div>
             <div className="bg-secondary py-3">
                 <h1> Books </h1>
-                <div className="container d-flex flex-wrap justify-content-between">
+                <div className="container d-flex flex-wrap justify-content-around">
                     {this.renderBooks()}
                 </div>
             </div>
