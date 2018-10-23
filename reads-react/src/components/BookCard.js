@@ -8,7 +8,7 @@ class BookCard extends Component {
         this.state = {
             hide: false,
             authors: [],
-            title: []
+            title: [],
         }
     }
     getAuthors = () => {
@@ -31,11 +31,12 @@ class BookCard extends Component {
             <div>
                 <div className="card bg-primary">
                     <div className="card-title text-light">
+                    {this.props.showEdit ? <button className="btn btn-secondary edit-btn position-absolute">edit</button> : null}
                         <h5>{this.state.title[0]}</h5>
                         <p>{this.state.title[1]} </p>
                     </div>
-                    <div className="d-flex card-container justify-content-center align-items-center bg-secondary text-light p-3">
-                        <div className="card-image">
+                    <div className="d-flex card-container justify-content-center flex-column flex-lg-row align-items-center bg-secondary text-light p-3">
+                        <div className="card-image my-3">
                             <img src={this.props.book.coverURL} alt="book pic" />
                         </div>
                         {this.state.hide ? null : <div className="card-info mx-5">

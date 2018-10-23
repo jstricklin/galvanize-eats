@@ -6,7 +6,7 @@ class AuthorCard extends Component {
         super(props)
         this.state = {
             hide: false,
-            books: []
+            books: [],
         }
     }
     populateBooks = () => this.state.books.map(book => {
@@ -27,11 +27,12 @@ class AuthorCard extends Component {
         return (
             <div>
                 <div className="card bg-primary">
-                    <div className="card-title text-light">
-                        <h5>{this.props.author.first} {this.props.author.last}</h5>
-                    </div>
-                    <div className="d-flex card-container justify-content-center align-items-center bg-secondary text-light p-3">
-                        <div className="card-image">
+                    <div className="card-title text-light d-flex align-items-center justify-content-center">
+                        <h5>{this.props.author.first} {this.props.author.last}</h5>{this.props.showEdit ? <button className="btn btn-secondary edit-btn position-absolute">edit</button> : null}
+                     </div>
+
+                    <div className="d-flex card-container flex-column flex-lg-row justify-content-center align-items-center bg-secondary text-light p-3">
+                        <div className="card-image my-3">
                             <img src={this.props.author.portraitURL} alt="author pic" />
                         </div>
                      {this.state.hide ? null :    <div className="card-info mx-5">

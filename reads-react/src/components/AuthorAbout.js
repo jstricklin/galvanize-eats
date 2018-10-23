@@ -15,9 +15,9 @@ class AuthorAbout extends Component {
     }
     render(){
         return (
-            <div>
+            <div className="col-sm-10 mx-auto">
                 <Link to=".."><button className="btn btn-dark mt-4"> Go Back </button></Link>
-                {this.state.author ? <AuthorCard author={this.state.author} /> : null}
+                {this.state.author ? <AuthorCard showEdit={this.props.showEdit} admin={true} author={this.state.author} /> : null}
             </div>
             )
     }

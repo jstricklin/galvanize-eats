@@ -21,7 +21,7 @@ class Books extends Component {
     renderBooks() {
         return this.state.bookData.map(book => {
             let bookURL = `${book.title}`
-            return <Link to={bookURL}><BookCard hide={true} getBook={this.props.getBook} book={book} /></Link>
+            return <Link to={bookURL}><BookCard showEdit={this.props.showEdit} hide={true} getBook={this.props.getBook} book={book} /></Link>
             })
 }
 componentDidMount() {
@@ -34,8 +34,8 @@ render() {
     return (
         <div>
             <div className="bg-secondary py-3">
-                <h1> Books </h1>
-                <div className="container d-flex flex-wrap justify-content-around">
+                <h1 className="bold"> Books </h1>
+                <div className="container d-flex flex-wrap justify-content-center">
                     {this.renderBooks()}
                 </div>
             </div>

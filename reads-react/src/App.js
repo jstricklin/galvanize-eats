@@ -21,7 +21,9 @@ class App extends Component {
             books: [],
             search: '',
             searchResults: [],
+            showEdit: false,
         }
+        this.toggleEdit = this.toggleEdit.bind(this)
         this.startSearch = this.startSearch.bind(this)
     }
     getAuthors() {
@@ -41,20 +43,23 @@ class App extends Component {
         e.target.reset()
         navigate(`/search/${this.state.search}`)
     }
+    toggleEdit() {
+        this.setState({showEdit: !this.state.showEdit})
+    }
     render() {
         return (
             <div className="App">
                 <main className="container-flex bg-secondary d-flex flex-column">
-                    <header className="main-header d-flex align-items-center text-light bg-primary"> <div className="col-sm-10 mx-auto d-flex justify-content-between align-items-center"><div className="logo d-flex align-items-center"> <i class="fa fa-search" aria-hidden="true"></i> <img src={logo} /> <Link className="text-light" to="/"><h1> Reads </h1></Link></div> <NavBar links={links} /><div className="my-auto d-flex"><form onSubmit={this.startSearch}><input onChange={(e)=>this.setState({search: e.target.value})} type="text" /><button className="btn ml-3"><FontAwesomeIcon icon="search" /></button></form></div></div> </header>
+                    <header className="main-header d-flex align-items-center text-light bg-primary"> <div className="col-sm-10 mx-auto d-flex justify-content-between align-items-center"><div onClick={this.toggleEdit} className="logo d-flex align-items-center"> <i class="fa fa-search" aria-hidden="true"></i> <img src={logo} /> <Link className="text-light" to="/"><h1> Reads </h1></Link></div> <NavBar links={links} /><div className="my-auto d-flex"><form onSubmit={this.startSearch}><input onChange={(e)=>this.setState({search: e.target.value})} type="text" /><button className="btn ml-3"><FontAwesomeIcon icon="search" /></button></form></div></div> </header>
 
                     <section className="col-sm-8 mx-auto">
                     <Router>
                         <Home path="/" />
                         <Search termString={this.state.search} path="/search/:terms" />
-                        <Authors getAuthors={this.getAuthors} path="/authors" />
-                        <AuthorAbout getAuthor={this.getAuthor} path="/authors/:name" />
-                        <Books getBooks={this.getBooks} path="/books" />
-                        <BookAbout getBook={this.getBook} path="/books/:title" />
+                        <Authors getAuthors={this.getAuthors} showEdit={this.state.showEdit} path="/authors" />
+                        <AuthorAbout showEdit={this.state.showEdit} getAuthor={this.getAuthor} path="/authors/:name" />
+                        <Books showEdit={this.state.showEdit} getBooks={this.getBooks} path="/books" />
+                        <BookAbout showEdit={this.state.showEdit} getBook={this.getBook} path="/books/:title" />
                     </Router>
                 </section>
 

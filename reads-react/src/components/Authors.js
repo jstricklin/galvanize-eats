@@ -12,7 +12,7 @@ class Authors extends Component {
     renderAuthors() {
         return this.state.authorData.map(author =>{
             let authorURL = `${author.first} ${author.last}`
-            return <Link to={authorURL} ><AuthorCard hide={true} author={author} /></Link>
+            return <Link to={authorURL} ><AuthorCard showEdit={this.props.showEdit} hide={true} author={author} /></Link>
             })
     }
     componentDidMount() {
@@ -25,8 +25,8 @@ class Authors extends Component {
         return (
             <div>
                 <div className="bg-secondary py-3">
-                    <h1> Authors </h1>
-                    <div className="container d-flex flex-wrap justify-content-around">
+                    <h1 className="bold"> Authors </h1>
+                    <div className="container d-flex flex-wrap justify-content-center">
                         {this.renderAuthors()}
                     </div>
                 </div>

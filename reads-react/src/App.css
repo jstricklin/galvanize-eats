@@ -81,3 +81,9 @@ footer {
     z-index:9999;
     height: 6em;
 }
+.bold {
+    font-weight: bold;
+}
+.edit-btn {
+    right: 1em;
+}

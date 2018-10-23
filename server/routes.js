@@ -60,7 +60,7 @@ router.get('/authorbooks/:name', (req, res, next) => {
             .then(books => res.json({result:books[0]}))
     }
 })
-app.get('/search/:terms', (req, res, next) => {
+router.get('/search/:terms', (req, res, next) => {
     let authRes = []
     let bookRes = []
     let searchArr = req.params.terms.split(' ')

@@ -9,9 +9,9 @@ routes = require('./routes');
 app.use(cors());
 app.use(morgan('combined'));
 
+app.use(bodyParser.json())
 routes = require('./routes.js');
 app.use('/', routes);
-app.use(bodyParser.json())
 
 app.use((req, res, next)=>{
     const err = new Error("Not Found");
